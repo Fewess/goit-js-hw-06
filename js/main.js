@@ -78,8 +78,9 @@ console.log(calculateTotalBalance(users)); // 20916
 // Задание 8
 // Массив имен всех пользователей у которых есть друг с указанным именем.
 
-const getUsersWithFriend = (users, friendName) => {
- return users.filter(user => user["friends"].includes(friendName)).map(user => user.name);
+const getUsersWithFriend = (users, friendName) => { 
+//  return users.filter(user => user["friends"].includes(friendName)).map(user => user.name);
+  return users.filter(user => user.friends.includes(friendName)).map(user => user.name);
 };
 
 console.log(getUsersWithFriend(users, 'Briana Decker')); // [ 'Sharlene Bush', 'Sheree Anthony' ]
@@ -91,7 +92,7 @@ console.log(getUsersWithFriend(users, 'Goldie Gentry')); // [ 'Elma Head', 'Sher
 
 const getNamesSortedByFriendsCount = users => {
   const sortByNumOfFriends = (userOne, userTwo) =>
-        userOne["friends"].length - userTwo["friends"].length;
+    userOne.friends.length - userTwo.friends.length;
     return users.sort(sortByNumOfFriends);
 };
 
@@ -104,9 +105,7 @@ console.log(getNamesSortedByFriendsCount(users));
 
 const getSortedUniqueSkills = users => {
    let skillsNotUnique = users
-    .reduce((acc, {skills}) => [...acc, ...skills], []);
-
-    skillsNotUnique = skillsNotUnique.sort();
+    .reduce((acc, {skills}) => [...acc, ...skills], []).sort();
 
     return [...new Set(skillsNotUnique)];
 };
